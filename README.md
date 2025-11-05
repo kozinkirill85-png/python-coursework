@@ -1,17 +1,3 @@
-# Coursework: Product and Category Classes
-
-Этот проект реализует классы `Product` и `Category` с автоматическим подсчетом количества категорий и товаров.
-
-## Функционал
-
-- Класс `Product`: название, описание, цена, количество.
-- Класс `Category`: название, описание, список продуктов.
-- Атрибуты класса `category_count` и `product_count` — обновляются автоматически.
-- Тесты покрывают все основные сценарии.
-- Поддержка чтения данных из JSON (опционально).
-
-## Запуск
-
-```bash
-poetry install
-poetry run python main.py
+<<<<<<< 
+>>>>>>> origin/main
+> # Homework: Product and Category classes
