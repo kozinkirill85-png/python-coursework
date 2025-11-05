@@ -1,3 +1,1 @@
-<<<<<<< 
->>>>>>> origin/main
-> # Homework: Product and Category classes
+# Homework: Product and Category classes
