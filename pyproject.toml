@@ -1,0 +1,27 @@
+[tool.poetry]
+name = "pythonproject1"
+version = "0.1.0"
+description = "Homework: Product and Category classes"
+authors = ["Kir <kozinkirill85@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.13"
+
+[tool.poetry.dev-dependencies]
+pytest = "^7.0"
+flake8 = "^6.0"
+black = "^23.0"
+isort = "^5.12"
+pytest-cov = "^4.0"
+
+
+[tool.poetry.group.dev.dependencies]
+pytest-cov = "^7.0.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+
+package-mode = false
