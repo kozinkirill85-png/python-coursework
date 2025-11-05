@@ -1,2 +1,1 @@
-# python-coursework
-Homework: Product and Category classes
+# Homework: Product and Category classes
