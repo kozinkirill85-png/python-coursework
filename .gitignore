@@ -4,6 +4,5 @@ echo "venv/
 __pycache__/
 *.pyc
 .pytest_cache/
-htmlcov/
 .coverage
 poetry.lock" > .gitignore
