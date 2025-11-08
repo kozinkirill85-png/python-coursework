@@ -10,7 +10,14 @@ def test_category_init():
 
     assert category.name == "Смартфоны"
     assert category.description == "Описание"
-    assert len(category.products) == 2
+
+    # Проверяем, что в строке есть оба продукта
+    assert "Samsung" in category.products
+    assert "iPhone" in category.products
+
+    # Проверяем, что в строке есть 2 продукта (по количеству "шт.")
+    assert category.products.count("шт.") == 2
+
     assert category.category_count == 1
     assert category.product_count == 2
 
