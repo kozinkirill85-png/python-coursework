@@ -13,4 +13,3 @@ class ProductIterator:
         product = self.category.products[self.index]
         self.index += 1
         return product
-

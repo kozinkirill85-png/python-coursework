@@ -1,6 +1,3 @@
-from typing import Union
-import pytest
-
 class Product:
     def __init__(self, name: str, description: str, price: float, quantity: int):
         self.name = name
@@ -37,4 +34,3 @@ class Product:
         if type(other) is not type(self):
             raise TypeError("Нельзя складывать продукты разных типов")
         return self.price * self.quantity + other.price * other.quantity
-
