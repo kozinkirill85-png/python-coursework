@@ -1,6 +1,7 @@
 from typing import List
 from src.product import Product
 
+
 class Category:
     category_count = 0
     product_count = 0
@@ -15,17 +16,19 @@ class Category:
     def add_product(self, product):
         """Добавляет продукт в категорию"""
         if not isinstance(product, Product):
-            raise TypeError("Можно добавлять только объекты Product или его наследников")
+            raise TypeError(
+                "Можно добавлять только объекты Product или его наследников"
+            )
         self.__products.append(product)
         Category.product_count += 1
-
 
     @property
     def products(self):
         """Геттер для вывода списка продуктов в виде строки"""
         result = ""
         for product in self.__products:
-            result += f"{product.name}, {product.price} руб. Остаток: {product.quantity} шт.\n"
+            result += (f"{product.name}, {product.price}"
+                       f" руб. Остаток: {product.quantity} шт.\n")
         return result
 
     def __str__(self):
