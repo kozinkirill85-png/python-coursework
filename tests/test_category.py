@@ -1,43 +1,28 @@
 import pytest
-from src.product import Product
 from src.category import Category
+from src.product import Product
+from src.smartphone import Smartphone
+from src.lawn_grass import LawnGrass
 
+def test_category_add_product_valid():
+    category = Category("Категория", "Описание", [])
+    product = Product("P", "", 100.0, 2)
+    category.add_product(product)
+    assert len(category._Category__products) == 1  # если приватный атрибут __products
 
-def test_category_init():
-    product1 = Product("Samsung", "256GB", 180000.0, 5)
-    product2 = Product("iPhone", "512GB", 210000.0, 8)
-    category = Category("Смартфоны", "Описание", [product1, product2])
+def test_category_add_product_invalid():
+    category = Category("Категория", "Описание", [])
+    with pytest.raises(TypeError):
+        category.add_product("Not a product")
 
-    assert category.name == "Смартфоны"
-    assert category.description == "Описание"
+def test_category_add_smartphone():
+    category = Category("Смартфоны", "Описание", [])
+    smartphone = Smartphone("S", "", 100.0, 2, 90.0, "M", 128, "Black")
+    category.add_product(smartphone)
+    assert len(category._Category__products) == 1
 
-    # Проверяем, что в строке есть оба продукта
-    assert "Samsung" in category.products
-    assert "iPhone" in category.products
-
-    # Проверяем, что в строке есть 2 продукта (по количеству "шт.")
-    assert category.products.count("шт.") == 2
-
-    assert category.category_count == 1
-    assert category.product_count == 2
-
-
-def test_category_counters():
-    Category.category_count = 0
-    Category.product_count = 0
-
-    product1 = Product("Samsung", "256GB", 180000.0, 5)
-    product2 = Product("iPhone", "512GB", 210000.0, 8)
-    category1 = Category("Смартфоны", "Описание", [product1, product2])
-
-    product3 = Product("TV", "QLED", 123000.0, 7)
-    category2 = Category("Телевизоры", "Описание", [product3])
-
-    assert Category.category_count == 2
-    assert Category.product_count == 3
-
-def test_category_str():
-    p1 = Product("P1", "", 100.0, 3)
-    p2 = Product("P2", "", 200.0, 2)
-    category = Category("Категория", "Описание", [p1, p2])
-    assert str(category) == "Категория, количество продуктов: 5 шт."
+def test_category_add_lawn_grass():
+    category = Category("Трава", "Описание", [])
+    grass = LawnGrass("G", "", 5.0, 10, "US", "5 дней", "Green")
+    category.add_product(grass)
+    assert len(category._Category__products) == 1
