@@ -1,5 +1,5 @@
 from typing import Union
-
+import pytest
 
 class Product:
     def __init__(self, name: str, description: str, price: float, quantity: int):
@@ -34,7 +34,7 @@ class Product:
         return f"{self.name}, {self.price} руб. Остаток: {self.quantity} шт."
 
     def __add__(self, other):
-        if not isinstance(other, Product):
-            raise TypeError("Можно складывать только объекты Product")
+        if type(other) is not type(self):
+            raise TypeError("Нельзя складывать продукты разных типов")
         return self.price * self.quantity + other.price * other.quantity
 
