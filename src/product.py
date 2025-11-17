@@ -1,9 +1,17 @@
-class Product:
+# src/product.py
+from abc import abstractmethod
+from src.base_product import BaseProduct
+from src.log_creation_mixin import LogCreationMixin
+
+class Product(LogCreationMixin, BaseProduct):
+    """Класс продукта"""
+
     def __init__(self, name: str, description: str, price: float, quantity: int):
         self.name = name
         self.description = description
         self.__price = price  # Приватный атрибут
         self.quantity = quantity
+        super().__init__(name, description, price, quantity)  # ✅ Вызов родительского __init__
 
     @property
     def price(self):
