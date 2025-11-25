@@ -27,3 +27,23 @@ def test_product_add_different_type():
     s = Smartphone("S", "", 200.0, 1, 90.0, "Model", 128, "Black")
     with pytest.raises(TypeError):
         p + s
+
+
+def test_product_invalid_quantity():
+    with pytest.raises(ValueError, match="Товар с нулевым количеством не может быть добавлен"):
+        Product("Бракованный товар", "Описание", 1000.0, 0)
+
+    with pytest.raises(ValueError, match="Товар с нулевым количеством не может быть добавлен"):
+        Product("Бракованный товар", "Описание", 1000.0, -5)
+
+
+def test_product_create_with_zero_quantity():
+    """Проверка, что при создании продукта с нулевым количеством выбрасывается ValueError."""
+    with pytest.raises(ValueError, match="Товар с нулевым количеством не может быть добавлен"):
+        Product("Test Product", "Description", 100.0, 0)
+
+
+def test_product_create_with_negative_quantity():
+    """Проверка, что при создании продукта с отрицательным количеством выбрасывается ValueError."""
+    with pytest.raises(ValueError, match="Товар с нулевым количеством не может быть добавлен"):
+        Product("Test Product", "Description", 100.0, -1)
