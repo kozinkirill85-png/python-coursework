@@ -2,11 +2,14 @@
 from abc import abstractmethod
 from src.base_product import BaseProduct
 from src.log_creation_mixin import LogCreationMixin
+from .exceptions import ZeroQuantityError
 
 class Product(LogCreationMixin, BaseProduct):
     """Класс продукта"""
 
     def __init__(self, name: str, description: str, price: float, quantity: int):
+        if quantity <= 0:
+            raise ZeroQuantityError("Товар с нулевым количеством не может быть добавлен")
         self.name = name
         self.description = description
         self.__price = price  # Приватный атрибут
@@ -42,3 +45,13 @@ class Product(LogCreationMixin, BaseProduct):
         if type(other) is not type(self):
             raise TypeError("Нельзя складывать продукты разных типов")
         return self.price * self.quantity + other.price * other.quantity
+
+    def __init__(self, name: str, description: str, price: float, quantity: int):
+        self.name = name
+        self.description = description
+        self.__price = price
+        if quantity <= 0:
+            raise ValueError("Товар с нулевым количеством не может быть добавлен")
+        self.quantity = quantity
+        super().__init__(name, description, price, quantity)
+
