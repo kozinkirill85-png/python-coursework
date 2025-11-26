@@ -52,3 +52,22 @@ def test_category_add_product_invalid_type():
 
     with pytest.raises(TypeError, match="Ожидается объект Product, получено: str"):
         category.add_product("Not a product")
+
+
+def test_category_products_property():
+    """Проверка свойства products (строковое представление списка товаров)."""
+    product1 = Product("A", "Desc", 100.0, 2)
+    product2 = Product("B", "Desc", 50.0, 3)
+    category = Category("Test", "Desc", [product1, product2])
+
+    expected = "A, 100.0 руб. Остаток: 2 шт.\nB, 50.0 руб. Остаток: 3 шт.\n"
+    assert category.products == expected
+
+
+def test_category_str():
+    """Проверка строкового представления категории."""
+    product1 = Product("A", "Desc", 100.0, 2)
+    product2 = Product("B", "Desc", 50.0, 3)
+    category = Category("Electronics", "All gadgets", [product1, product2])
+
+    assert str(category) == "Electronics, количество продуктов: 5 шт."

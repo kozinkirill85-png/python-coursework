@@ -47,3 +47,31 @@ def test_product_create_with_negative_quantity():
     """Проверка, что при создании продукта с отрицательным количеством выбрасывается ValueError."""
     with pytest.raises(ValueError, match="Товар с нулевым количеством не может быть добавлен"):
         Product("Test Product", "Description", 100.0, -1)
+
+
+def test_product_price_setter_positive():
+    """Проверка, что сеттер цены корректно устанавливает положительное значение."""
+    product = Product("Test", "Desc", 100.0, 5)
+    product.price = 150.0
+    assert product.price == 150.0
+
+
+def test_product_price_setter_negative():
+    """Проверка, что сеттер цены не позволяет установить нулевое или отрицательное значение."""
+    product = Product("Test", "Desc", 100.0, 5)
+    product.price = -10.0  # Это должно вывести сообщение, но не вызывать ошибку
+    assert product.price == 100.0  # Цена не должна измениться
+
+
+def test_product_addition():
+    """Проверка сложения двух продуктов (общая стоимость)."""
+    product1 = Product("A", "Desc", 100.0, 2)
+    product2 = Product("B", "Desc", 50.0, 3)
+    total = product1 + product2
+    assert total == 350.0  # 100*2 + 50*3 = 200 + 150 = 350
+
+
+def test_product_str():
+    """Проверка строкового представления продукта."""
+    product = Product("Test", "Desc", 100.0, 5)
+    assert str(product) == "Test, 100.0 руб. Остаток: 5 шт."
